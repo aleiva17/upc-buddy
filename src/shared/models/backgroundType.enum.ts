@@ -1,0 +1,15 @@
+
+export enum BackgroundType {
+  LIGHT,
+  DARK,
+  PINK_GUY,
+  OCEANIC,
+  COTTON_CANDY,
+  HYPER,
+  FLAMINGO,
+  SUBLIME,
+  POWER_PUFF,
+  PURPLE_HAZE,
+  SLATE,
+  CLEAR_NIGHT
+}
