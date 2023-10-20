@@ -12,3 +12,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+.p-tabview-nav-prev {
+  background-color: white !important;
+  color: rgb(59 130 246) !important;
+}

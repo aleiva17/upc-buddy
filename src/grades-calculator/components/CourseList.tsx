@@ -17,10 +17,7 @@ export const CourseList = () => {
     <TabView
       pt={{
         nav: {
-          className: classNames('flex flex-1 list-none m-0 p-0', 'dark:bg-gray-900 dark:border-blue-900/40 dark:text-white/80')
-        },
-        previousButton: {
-          className: classNames('!bg-white')
+          className: classNames('flex flex-1 list-none m-0 p-0', 'dark:bg-gray-900 dark:border-blue-900/40 dark:text-white/80'),
         }
       }}
       scrollable={true}
