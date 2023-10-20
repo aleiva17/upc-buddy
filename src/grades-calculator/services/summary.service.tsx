@@ -51,6 +51,7 @@ export const getSemesterSummary = (coursesSummaries: Array<CourseSummary>): Seme
   });
 
   semesterSummary.missingScore = parseFloat(semesterSummary.score.toFixed(2)) - parseFloat(semesterSummary.currentScore.toFixed(2));
+  semesterSummary.missingScore = parseFloat(semesterSummary.missingScore.toFixed(2));
 
   return semesterSummary;
 }
