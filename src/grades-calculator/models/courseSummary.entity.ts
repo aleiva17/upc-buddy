@@ -6,4 +6,5 @@ export interface CourseSummary {
   currentScore: string;
   maxScore: string;
   officialScore: string;
+  gradesAreComplete: boolean;
 }

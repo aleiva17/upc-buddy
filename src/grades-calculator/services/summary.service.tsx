@@ -5,13 +5,18 @@ import {SemesterSummary} from "../models/semesterSummary.entity.ts";
 
 export const getCoursesSummaries = (courses: Array<Course>): Array<CourseSummary> => {
   const coursesSummaries: Array<CourseSummary> = [];
+  let gradesAreComplete: boolean = true;
 
   courses.forEach((course) => {
     let sumOfValidPercentage = 0;
     let currentScore = 0;
 
     course.grades.forEach((grade) => {
-      if (grade.score == undefined) return;
+      if (grade.score == undefined) {
+        gradesAreComplete = false;
+        return;
+      }
+
       sumOfValidPercentage += grade.percentage;
 
       const gradeInput = grade.percentage * grade.score / 100;
@@ -30,6 +35,7 @@ export const getCoursesSummaries = (courses: Array<Course>): Array<CourseSummary
       currentScore: currentScore.toFixed(2),
       maxScore: maxScore.toFixed(2),
       officialScore: officialScore.toString(),
+      gradesAreComplete: gradesAreComplete
     });
   });
 
@@ -42,12 +48,14 @@ export const getSemesterSummary = (coursesSummaries: Array<CourseSummary>): Seme
   const semesterSummary: SemesterSummary = {
     score: 0,
     currentScore: 0,
-    missingScore: 0
+    missingScore: 0,
+    arePendingGrades: false
   };
 
   coursesSummaries.forEach((courseSummary) => {
     semesterSummary.score += courseSummary.credits / totalCredits * parseFloat(courseSummary.officialScore);
     semesterSummary.currentScore += courseSummary.credits / totalCredits * parseFloat(courseSummary.currentScore);
+    if (!courseSummary.gradesAreComplete) semesterSummary.arePendingGrades = true;
   });
 
   semesterSummary.missingScore = parseFloat(semesterSummary.score.toFixed(2)) - parseFloat(semesterSummary.currentScore.toFixed(2));
